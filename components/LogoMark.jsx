@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { company } from "@/lib/siteData";
+import { assetPath } from "@/lib/assetPath";
 
 export function LogoMark({ linked = true }) {
   const mark = (
     <span className="logo-mark" aria-label={company.name}>
       <span className="logo-symbol logo-symbol-image">
-        <Image src="/images/aayat-logo.jpg" alt="" fill unoptimized sizes="48px" />
+        <Image src={assetPath("/images/aayat-logo.jpg")} alt="" fill unoptimized sizes="48px" priority />
       </span>
       <span className="logo-copy">
         <strong>AAYAT</strong>
