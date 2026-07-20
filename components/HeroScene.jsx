@@ -1,21 +1,19 @@
 "use client";
 
 import { Factory, Forklift, PackageCheck, Recycle, ShieldCheck } from "lucide-react";
+import { assetPath } from "@/lib/assetPath";
 
 export function HeroScene() {
   return (
     <div className="hero-video-stage" aria-hidden="true">
-      <video
+      <img
         className="hero-bg-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/images/aayat-warehouse-racking.jpg"
-      >
-        <source src="/videos/aayat-hero-loop.webm" type="video/webm" media="(min-width: 761px)" />
-      </video>
+        src={assetPath("/images/aayat-warehouse-racking.jpg")}
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
       <div className="hero-video-badges">
         <span><ShieldCheck size={15} /> ISPM-15 certified</span>
         <span><PackageCheck size={15} /> 500 pallets/day</span>
