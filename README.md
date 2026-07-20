@@ -1,6 +1,25 @@
+<div align="center">
+
 # AAYAT Integrated Solutions Website
 
-Premium JavaScript-only Next.js business website for AAYAT Integrated Solutions, covering industrial packaging, wooden pallets, warehousing systems, industrial real estate, waste management, and factory setup support.
+### Premium industrial business website for packaging, pallets, warehousing and factory solutions
+
+<a href="https://satitech-admin.github.io/Aayat-integrated--solution-website/">
+  <img src="./public/og.png" alt="AAYAT Integrated Solutions website preview" width="100%" />
+</a>
+
+<br />
+<br />
+
+[![OPEN LIVE SITE](https://img.shields.io/badge/OPEN_LIVE_SITE-0B6B45?style=for-the-badge&logo=googlechrome&logoColor=white)](https://satitech-admin.github.io/Aayat-integrated--solution-website/)
+
+**Click the image or button above to open the website.**
+
+</div>
+
+---
+
+Premium JavaScript-only Next.js business website for **AAYAT Integrated Solutions**, covering industrial packaging, wooden pallets, warehousing systems, industrial real estate, waste management, and factory setup support.
 
 ## Features
 
