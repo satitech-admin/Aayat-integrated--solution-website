@@ -44,39 +44,45 @@ jobs:
       - name: Build static website
         env:
           PAGES_BUILD: "true"
+          NEXT_PUBLIC_BASE_PATH: /Aayat-integrated--solution-website
           NEXT_PUBLIC_SITE_URL: https://satitech-admin.github.io/Aayat-integrated--solution-website
         run: npm run build
 
-      - name: Fix public asset paths
+      - name: Fix remaining public asset paths
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          root = Path('out')
-          prefix = '/Aayat-integrated--solution-website'
+          root = Path("out")
+          prefix = "/Aayat-integrated--solution-website"
           replacements = {
               '"/images/': f'"{prefix}/images/',
               "'/images/": f"'{prefix}/images/",
               '"/videos/': f'"{prefix}/videos/',
               "'/videos/": f"'{prefix}/videos/",
+              '\\/images\\/': f'{prefix}\\/images\\/',
+              '\\/videos\\/': f'{prefix}\\/videos\\/',
+              'url(/images/': f'url({prefix}/images/',
+              'url("/images/': f'url("{prefix}/images/',
+              "url('/images/": f"url('{prefix}/images/",
               '"/favicon.svg"': f'"{prefix}/favicon.svg"',
               "'/favicon.svg'": f"'{prefix}/favicon.svg'",
               '"/og.png"': f'"{prefix}/og.png"',
               "'/og.png'": f"'{prefix}/og.png'",
           }
 
-          for path in root.rglob('*'):
-              if not path.is_file() or path.suffix.lower() not in {'.html', '.js', '.css', '.json', '.xml', '.txt'}:
+          for path in root.rglob("*"):
+              if not path.is_file() or path.suffix.lower() not in {".html", ".js", ".css", ".json", ".xml", ".txt"}:
                   continue
               try:
-                  text = path.read_text(encoding='utf-8')
+                  text = path.read_text(encoding="utf-8")
               except UnicodeDecodeError:
                   continue
               updated = text
               for old, new in replacements.items():
                   updated = updated.replace(old, new)
               if updated != text:
-                  path.write_text(updated, encoding='utf-8')
+                  path.write_text(updated, encoding="utf-8")
           PY
 
       - name: Add fallback page
