@@ -45,7 +45,18 @@ jobs:
         env:
           PAGES_BUILD: "true"
           NEXT_PUBLIC_SITE_URL: https://satitech-admin.github.io/Aayat-integrated--solution-website
-        run: npm run build
+        run: |
+          set +e
+          npm run build > build.log 2>&1
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            echo "===== AAYAT BUILD ERROR ====="
+            grep -Ei -C 8 "error|failed|failure|export encountered|unsupported|dynamic" build.log | tail -n 220 || true
+            echo "===== LAST 120 BUILD LINES ====="
+            tail -n 120 build.log
+            exit "$status"
+          fi
+          cat build.log
 
       - name: Add fallback page
         run: cp out/index.html out/404.html
