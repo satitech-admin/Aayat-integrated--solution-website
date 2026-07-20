@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Maximize2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { assetPath } from "@/lib/assetPath";
 
 export function PreviewImage({
   src,
@@ -14,6 +15,7 @@ export function PreviewImage({
   const [open, setOpen] = useState(false);
   const title = label || alt || "image";
   const canUsePortal = typeof document !== "undefined";
+  const resolvedSrc = assetPath(src);
 
   const modal = open && canUsePortal ? (
     <div className="image-preview-modal" role="dialog" aria-modal="true" aria-label={title} onClick={() => setOpen(false)}>
@@ -22,7 +24,7 @@ export function PreviewImage({
           <X size={20} aria-hidden="true" />
         </button>
         <div className="image-preview-stage">
-          <Image src={src} alt={alt} fill unoptimized sizes="96vw" />
+          <Image src={resolvedSrc} alt={alt} fill unoptimized sizes="96vw" priority />
         </div>
         <p>{title}</p>
       </div>
@@ -51,7 +53,7 @@ export function PreviewImage({
         onClick={() => setOpen(true)}
         aria-label={`Preview ${title}`}
       >
-        <Image src={src} alt={alt} fill unoptimized sizes={sizes} />
+        <Image src={resolvedSrc} alt={alt} fill unoptimized sizes={sizes} loading="lazy" />
         <span className="preview-image-cue">
           <Maximize2 size={15} aria-hidden="true" /> Preview
         </span>
