@@ -1,0 +1,35 @@
+{
+  "name": "aayat-integrated-solutions",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "npm run build",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "cloudinary": "^2.10.0",
+    "lucide-react": "^1.25.0",
+    "mongoose": "^9.7.4",
+    "next": "16.2.6",
+    "nodemailer": "^9.0.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-hook-form": "^7.82.0",
+    "swiper": "^14.0.5",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.1",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "4.2.1"
+  },
+  "type": "module"
+}
